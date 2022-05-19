@@ -1,5 +1,10 @@
 import {
-  Card, CardContent, Typography,
+  Button,
+  Card,
+  CardContent,
+  Typography,
+  Divider,
+  Box,
 } from '@mui/material';
 
 export { Home };
@@ -15,9 +20,13 @@ function Home() {
           Welcome to my personal space.
         </Typography>
         <Typography>
-          {
-            'I\'m a software engineer based in Singapore - expanding the horizons of DeFi @CakeDeFi.'
-          }
+          I&apos;m a software engineer based in Singapore
+          {' '}
+          - expanding the horizons of DeFi
+          <Button href="https://cakedefi.com" target="_blank" rel="noreferrer">
+            @CakeDeFi
+          </Button>
+          .
         </Typography>
         <Typography>
           My current passions include crypto, decentralized finance, web3, and gaming.
@@ -25,8 +34,11 @@ function Home() {
         <Typography variant="body2" gutterBottom>
           Currently
           {' '}
-          exploring Unreal Engine 5, metaverse & DeFi projects.
+          exploring Unreal Engine 5, metaverse &amp; DeFi projects.
         </Typography>
+        <Box sx={{ m: 2 }} />
+        <Divider variant="middle" />
+        <Box sx={{ m: 2 }} />
         <Typography variant="h5" component="div" gutterBottom>
           Looking to collaborate?
         </Typography>

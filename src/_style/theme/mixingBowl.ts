@@ -1,6 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import { createTheme, ThemeOptions } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { amber } from '@mui/material/colors';
 
 import { colorModeAtom } from '../../_state';
 
@@ -22,13 +23,10 @@ function getDerivedTheme() {
         : {
           // palette values for dark mode
           primary: {
-            main: '#3B1BFF',
+            main: amber[500],
           },
           secondary: {
             main: '#f50057',
-          },
-          text: {
-            primary: '#FFF',
           },
           background: {
             default: '#212121',
