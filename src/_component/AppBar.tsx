@@ -17,7 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 
 import { ThemeToggle } from '.';
-import { menuItems } from '../layout/content/navlist';
+import { menuItems } from '../layout/content';
 
 export { HeaderBar };
 

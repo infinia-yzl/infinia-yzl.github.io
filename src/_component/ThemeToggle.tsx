@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { useTheme } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
+import {
+  useTheme, IconButton, Box,
+} from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import useMediaQuery from '@mui/material/useMediaQuery';

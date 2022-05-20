@@ -1,1 +1,2 @@
-export { Content } from './Content';
+export { Content } from './Default';
+export { menuItems } from './navlist';

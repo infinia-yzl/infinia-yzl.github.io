@@ -22,12 +22,8 @@ function getDerivedTheme() {
         }
         : {
           // palette values for dark mode
-          primary: {
-            main: amber[500],
-          },
-          secondary: {
-            main: '#f50057',
-          },
+          primary: { main: amber[500] },
+          secondary: { main: '#f50057' },
           background: {
             default: '#212121',
             paper: '#0a0808',

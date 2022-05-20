@@ -1,5 +1,3 @@
-// Only Auth route
-
 import { Outlet } from 'react-router-dom';
 import { Item } from '../../_component';
 
