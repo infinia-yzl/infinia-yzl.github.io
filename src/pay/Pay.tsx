@@ -28,7 +28,7 @@ function Pay() {
             <span>Solana ($USDC)</span>
           </Tooltip>
         </Typography>
-        <Typography>
+        <div>
           <Typography variant="button" gutterBottom>
             - TO -
           </Typography>
@@ -45,7 +45,7 @@ function Pay() {
               <Clipboard text="BC6VUqd5upm84kbm3UKWxyM9P8Rqd2jW9tatQkQTMEzw" showIcon={false} />
             </code>
           </Typography>
-        </Typography>
+        </div>
       </CardContent>
     </Card>
   );
