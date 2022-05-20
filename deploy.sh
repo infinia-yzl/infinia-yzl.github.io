@@ -13,7 +13,7 @@ cd dist
 echo 'infinia.space' > CNAME
 
 git init
-git checkout -b main
+git checkout -B main
 git add -A
 git commit -m 'deploy'
 
