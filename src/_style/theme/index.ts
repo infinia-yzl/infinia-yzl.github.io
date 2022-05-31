@@ -1,1 +1,0 @@
-export { getDerivedTheme } from './mixingBowl';

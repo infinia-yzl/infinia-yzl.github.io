@@ -1,1 +1,0 @@
-export { colorModeAtom } from './colorMode';
