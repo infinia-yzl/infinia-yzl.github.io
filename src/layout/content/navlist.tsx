@@ -1,5 +1,5 @@
-import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
-import ContactlessIcon from '@mui/icons-material/Contactless';
+import { HomeTwoTone as HomeTwoToneIcon } from '@mui/icons-material';
+import { Contactless as ContactlessIcon } from '@mui/icons-material';
 
 export const menuItems = [{
   key: '/',
