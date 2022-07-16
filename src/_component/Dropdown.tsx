@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
 import type { SelectChangeEvent } from '@mui/material';
 import {
   Box, FormControl, InputLabel, Select, MenuItem,
@@ -13,12 +13,14 @@ export { Dropdown };
  */
 function Dropdown(props: IDropdown) {
   const {
+    atom,
     id,
     text,
+    values,
     allowEmpty,
     children,
   } = props;
-  const [value, setValue] = useState('');
+  const [value, setValue] = useRecoilState(atom);
 
   const handleChange = (event: SelectChangeEvent) => {
     setValue(event.target.value as string);
@@ -40,6 +42,14 @@ function Dropdown(props: IDropdown) {
               <em>Empty</em>
             </MenuItem>
           )}
+          {values.map((item) => (
+            <MenuItem
+              key={item}
+              value={item}
+            >
+              {item}
+            </MenuItem>
+          ))}
           {children}
         </Select>
       </FormControl>

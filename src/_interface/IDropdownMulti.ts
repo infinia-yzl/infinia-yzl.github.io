@@ -1,12 +1,11 @@
 import type { SelectProps } from '@mui/material';
 import type { RecoilState } from 'recoil';
 
-export type { IDropdown };
+export type { IDropdownMulti };
 
-interface IDropdown extends SelectProps {
-  atom: RecoilState<string>;
+interface IDropdownMulti extends SelectProps {
+  atom: RecoilState<string[]>;
   id: string;
   text: string;
   values: string[];
-  allowEmpty?: boolean;
 }

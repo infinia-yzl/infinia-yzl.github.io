@@ -12,7 +12,6 @@ const currentPromptAtom = atom<string>({
   default: '',
 });
 
-// 0 - Character, 1 - Landscape, 3 - Other
 const promptVariationAtom = atom<'character' | 'landscape' | 'other' | null>({
   key: 'promptVariation',
   default: null,

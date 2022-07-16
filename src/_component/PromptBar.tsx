@@ -51,7 +51,6 @@ function PromptBar() {
         }
         renderInput={(params) => (
           <TextField
-            autoFocus
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...params}
             label="Prompt is built here. You may paste an existing prompt here to prepopulate the customization options."
