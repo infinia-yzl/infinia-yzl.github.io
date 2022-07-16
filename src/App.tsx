@@ -5,6 +5,7 @@ import './App.css';
 import { Layout } from './layout';
 import { Home } from './home';
 import { Pay } from './pay';
+import { Prompt } from './prompt';
 import { getDerivedTheme } from './_style/theme';
 
 export default App;
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="pay" element={<Pay />} />
+            <Route path="prompt" element={<Prompt />} />
           </Route>
         </Routes>
       </ThemeProvider>

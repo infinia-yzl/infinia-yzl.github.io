@@ -1,0 +1,1 @@
+export { localStorageEffect } from './store';

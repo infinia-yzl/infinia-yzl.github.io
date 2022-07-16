@@ -34,6 +34,14 @@
   ],
   "ignorePatterns": ["**/*.d.ts", "*.html"],
   "rules": {
+    "consistent-return": "error",
+    "no-else-return": ["error", { "allowElseIf": false }],
+    "prefer-destructuring": ["error", {
+      "array": true,
+      "object": true
+    }, {
+      "enforceForRenamedProperties": false
+    }],
     "no-restricted-imports": [
       "error",
       {
@@ -41,6 +49,7 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "no-param-reassign": [
       "error",
@@ -53,7 +62,54 @@
       "prefer-double"
     ],
     "no-trailing-spaces": ["error", { "ignoreComments": true }],
-    "indent": ["error", 2],
+    "no-underscore-dangle": 0,
+    "indent": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/naming-convention": [
+      "error",
+    {
+      "selector": "variable",
+      "format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
+      "leadingUnderscore": "allow"
+    },
+    {
+      "selector": "typeParameter",
+      "format": ["StrictPascalCase"],
+      "prefix": ["T"]
+    },
+    {
+      "selector": "interface",
+      "format": ["StrictPascalCase"],
+      "prefix": ["I"]
+    },
+    {
+      "selector": "parameter",
+      "format": ["strictCamelCase", "StrictPascalCase"],
+      "leadingUnderscore": "allow"
+    },
+    {
+      "selector": [
+        "classProperty",
+        "objectLiteralProperty",
+        "typeProperty",
+        "classMethod",
+        "objectLiteralMethod",
+        "typeMethod",
+        "accessor",
+        "enumMember"
+      ],
+      "format": null,
+      "modifiers": ["requiresQuotes"]
+    }],
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "allow"
+      }
+    ],
+    "@typescript-eslint/consistent-type-exports": 2,
+    "@typescript-eslint/consistent-type-imports": 2,
     "object-curly-newline": ["error", {
       "ObjectExpression": { "multiline": true, "minProperties": 3 },
       "ObjectPattern": { "multiline": true, "minProperties": 3 },

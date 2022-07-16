@@ -13,8 +13,10 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { Menu as MenuIcon } from '@mui/icons-material';
-import { AllInclusive as AllInclusiveIcon } from '@mui/icons-material';
+import {
+  Menu as MenuIcon,
+  AllInclusive as AllInclusiveIcon,
+} from '@mui/icons-material';
 
 import { ThemeToggle } from '.';
 import { menuItems } from '../layout/content';

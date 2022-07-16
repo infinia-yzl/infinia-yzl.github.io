@@ -1,5 +1,8 @@
-import { HomeTwoTone as HomeTwoToneIcon } from '@mui/icons-material';
-import { Contactless as ContactlessIcon } from '@mui/icons-material';
+import {
+  HomeTwoTone as HomeTwoToneIcon,
+  Contactless as ContactlessIcon,
+  PrecisionManufacturing as PrecisionManufacturingIcon,
+} from '@mui/icons-material';
 
 export const menuItems = [{
   key: '/',
@@ -9,4 +12,8 @@ export const menuItems = [{
   key: 'pay',
   primary: 'Pay',
   icon: <ContactlessIcon />,
+}, {
+  key: 'prompt',
+  primary: 'Prompt',
+  icon: <PrecisionManufacturingIcon />,
 }];

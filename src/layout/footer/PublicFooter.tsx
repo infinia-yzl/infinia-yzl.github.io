@@ -12,7 +12,7 @@ function PublicFooter() {
   return (
     <footer>
       <Typography sx={{ marginTop: 2 }}>
-        <code>Made with Vite, React, React-Router, Recoil</code>
+        <code>Made with Vite, React, React-Router, Recoil, MUI</code>
       </Typography>
       <Grid container sx={{ marginTop: 1 }}>
         <Grid item xs>
