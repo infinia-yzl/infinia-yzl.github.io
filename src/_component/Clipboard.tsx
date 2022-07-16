@@ -3,7 +3,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { IconButton, Tooltip } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { yellow } from '@mui/material/colors';
-import { IClipboard } from '../_interface';
+import type { IClipboard } from '../_interface';
 
 export { Clipboard };
 

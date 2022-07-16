@@ -2,7 +2,10 @@ import {
   Autocomplete, Button, TextField,
 } from '@mui/material';
 import { useRecoilState, useResetRecoilState } from 'recoil';
-import { DeleteForever as DeleteForeverIcon } from '@mui/icons-material';
+import {
+  DeleteForever as DeleteForeverIcon,
+  RestartAlt as RestartAltIcon,
+} from '@mui/icons-material';
 
 import {
   currentPromptAtom,
@@ -15,6 +18,7 @@ export { PromptBar };
 function PromptBar() {
   const [currentPrompt, setCurrentPrompt] = useRecoilState(currentPromptAtom);
   const [recentPrompts, setRecentPrompts] = useRecoilState(recentPromptsAtom);
+  const resetCurrentPrompt = useResetRecoilState(currentPromptAtom);
   const resetRecentPrompts = useResetRecoilState(recentPromptsAtom);
 
   const onPromptChange = (value: string | null) => {
@@ -56,9 +60,13 @@ function PromptBar() {
         )}
       />
       <Item textAlign="right">
-        <Button onClick={resetRecentPrompts} size="small">
+        <Button onClick={resetCurrentPrompt} size="small" color="info">
+          <RestartAltIcon />
+          Reset current prompt
+        </Button>
+        <Button onClick={resetRecentPrompts} size="small" color="error">
           <DeleteForeverIcon />
-          Clear all recent prompts
+          Clear all history
         </Button>
       </Item>
     </>

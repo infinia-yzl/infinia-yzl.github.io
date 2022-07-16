@@ -1,7 +1,6 @@
 import { useRecoilValue } from 'recoil';
-import {
-  createTheme, ThemeOptions, useMediaQuery,
-} from '@mui/material';
+import type { ThemeOptions } from '@mui/material';
+import { createTheme, useMediaQuery } from '@mui/material';
 import { amber } from '@mui/material/colors';
 
 import { colorModeAtom } from '../../_state';

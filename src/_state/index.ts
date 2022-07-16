@@ -1,2 +1,4 @@
 export { colorModeAtom } from './colorMode';
-export { currentPromptAtom, recentPromptsAtom } from './prompt';
+export {
+  currentPromptAtom, recentPromptsAtom, promptVariationAtom,
+} from './prompt';
