@@ -5,3 +5,4 @@ export { Item } from './Item';
 export { PromptBar } from './PromptBar';
 export { Dropdown } from './Dropdown';
 export { DropdownMulti } from './DropdownMulti';
+export { StyleList } from './StyleList';

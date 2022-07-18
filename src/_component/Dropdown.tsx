@@ -27,7 +27,7 @@ function Dropdown(props: IDropdown) {
   };
 
   return (
-    <Box sx={{ maxWidth: 130 }}>
+    <Box sx={{ maxWidth: 160 }}>
       <FormControl fullWidth>
         <InputLabel id={`${id}-label`}>{text}</InputLabel>
         <Select

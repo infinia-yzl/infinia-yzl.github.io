@@ -1,0 +1,30 @@
+export { titles };
+const titles = [
+  'Lord',
+  'Duke',
+  'Baron',
+  'Count',
+  'Emperor',
+  'King',
+  'Prince',
+  'Priest',
+
+  'Lady',
+  'Duchess',
+  'Baroness',
+  'Countess',
+  'Empress',
+  'Queen',
+  'Princess',
+  'Priestess',
+
+  'Noble',
+  'Knight',
+  'Barbarian',
+  'Warrior',
+  'Wizard',
+  'Witch',
+  'Astronaut',
+  'Hunter',
+  'Pilot',
+];

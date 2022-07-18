@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 
 export {
-  personAtom, titlesAtom, flavorsAtom, outfitsAtom,
+  personAtom, titlesAtom, flavorsAtom, outfitsAtom, lightingsAtom, stylesAtom,
 };
 
 const personAtom = atom<string>({
@@ -21,5 +21,15 @@ const flavorsAtom = atom<string[]>({
 
 const outfitsAtom = atom<string[]>({
   key: 'outfits',
+  default: [],
+});
+
+const lightingsAtom = atom<string[]>({
+  key: 'lightings',
+  default: [],
+});
+
+const stylesAtom = atom<string[]>({
+  key: 'styles',
   default: [],
 });
