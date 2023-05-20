@@ -14,7 +14,7 @@ function Home() {
     <Card>
       <CardContent>
         <Typography variant="h2">
-          Hi!H
+          Greetings!
         </Typography>
         <Typography variant="h6" gutterBottom>
           Welcome to my personal space.
@@ -29,12 +29,14 @@ function Home() {
           .
         </Typography>
         <Typography>
-          My current passions include crypto, decentralized finance, web3, and gaming.
+          My current passions include crypto, decentralized finance, web3, AI and gaming.
         </Typography>
         <Typography variant="body2" gutterBottom>
           Currently
           {' '}
-          exploring Unreal Engine 5, metaverse &amp; DeFi projects.
+          exploring AI tools like GPT &amp; Midjourney, Unreal Engine 5, metaverse
+          {' '}
+          &amp; DeFi projects.
         </Typography>
         <Box sx={{ m: 2 }} />
         <Divider variant="middle" />
