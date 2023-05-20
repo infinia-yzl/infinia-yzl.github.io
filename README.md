@@ -1,7 +1,15 @@
 # infinia-universe
 
-To run:
+Quickstart:
+
+npm
 ```
-npm i
+npm install
 npm start
+```
+
+pnpm
+```
+pnpm install
+pnpm start
 ```
