@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
-  useTheme, IconButton, Box,
+  useTheme, IconButton, Box, useMediaQuery,
 } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { Brightness4 as Brightness4Icon, Brightness7 as Brightness7Icon } from '@mui/icons-material';
 
 import { colorModeAtom } from '../_state';
 
