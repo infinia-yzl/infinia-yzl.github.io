@@ -1,3 +1,4 @@
+import React from "react";
 export default function Home() {
   // Define the base size for the sun or galaxy core
   const coreSizeBase = 20; // 20vw for the core size
@@ -14,29 +15,51 @@ export default function Home() {
     return index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite';
   };
 
+  // Function to determine the position of the planet on its orbit
+  const getPlanetPosition = (orbitSize) => {
+    // The planet will be positioned at the bottom of the orbit
+    // The transform will be adjusted to compensate for the planet's size
+    const planetSize = coreSizeBase / 4; // Example planet size, you can adjust as needed
+    return {
+      top: '50%',
+      left: '50%',
+      transform: `translate(-50%, calc(${orbitSize / 2}vw - ${planetSize / 2}vw))`, // Adjust the planet along the orbit
+    };
+  };
+
   return (
     <main className="flex h-screen items-center justify-center p-6 bg-black">
       <div className="relative flex items-center justify-center">
         {/* Orbits */}
         {orbitSizes.map((size, index) => {
-          // Calculate the delay needed for each halo's animation
-          // The delay for each halo is (duration of pulse / number of halos) * index of halo
-          // Adjust the multiplier (0.1 here) based on the percentage of the pulse animation
           const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
           const rotationAnimation = getRotationAnimation(index);
+          const planetPosition = getPlanetPosition(size);
+
           return (
-            <div
-              key={index}
-              className={`absolute rounded-full border`}
-              style={{
-                animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
-                borderWidth: '2px',
-                borderColor: 'rgba(255, 255, 255, 0.5)',
-                borderStyle: 'dotted',
-                width: `${size}vw`,
-                height: `${size}vw`,
-              }}
-            ></div>
+            <React.Fragment key={index}>
+              <div
+                className={`absolute rounded-full border`}
+                style={{
+                  animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
+                  borderWidth: '2px',
+                  borderColor: 'rgba(255, 255, 255, 0.5)',
+                  borderStyle: 'dotted',
+                  width: `${size}vw`,
+                  height: `${size}vw`,
+                }}
+              ></div>
+              {/* Planet */}
+              <div
+                className={`absolute rounded-full bg-green-600 shadow-lg`}
+                style={{
+                  width: `${coreSizeBase / 4}vw`, // This is the size of the planet
+                  height: `${coreSizeBase / 4}vw`, // This is the size of the planet
+                  ...planetPosition,
+                  zIndex: 20, // Ensure the planet is above the orbit
+                }}
+              ></div>
+            </React.Fragment>
           );
         })}
 
