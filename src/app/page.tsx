@@ -9,7 +9,7 @@ interface Message {
 
 const MSG_INTRO: Message = {
   title: "Hi, I'm Isaac.",
-  body: "I specialize in software engineering and web development with recent experience working in the blockchain industry.",
+  body: "I specialize in software engineering and web development with recent working experience in the blockchain industry.",
 };
 
 const TECHNOLOGIES = [
@@ -22,11 +22,17 @@ const TECHNOLOGIES = [
   { name: 'GraphQL' },
   { name: 'SQL' },
   { name: 'Redis' },
+  { name: 'NodeJS' },
+  { name: 'BunJS' },
   { name: 'Vite' },
+  { name: 'Material UI' },
+  { name: 'Tailwind CSS' },
   { name: 'Blockchain' },
   { name: 'Web 3' },
-  { name: 'Material UI' },
-  { name: 'Tailwind CSS' }
+  { name: 'UTXO' },
+  { name: 'EVM' },
+  { name: 'SVM' },
+  { name: 'TVM' },
 ];
 
 // Function to calculate font size based on index
@@ -54,15 +60,21 @@ export default function Home() {
     return index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite';
   };
 
-  // Function to determine the position of the planet on its orbit
-  const getPlanetPosition = (orbitSize: number) => {
-    // The planet will be positioned at the bottom of the orbit
-    // The transform will be adjusted to compensate for the planet's size
-    const planetSize = coreSizeBase / 4; // Example planet size, you can adjust as needed
+  const innerHaloSize = orbitSizes[0]; // Use the first orbit size for the inner halo
+
+  const getPlanetPosition = (index: number, totalPlanets: number, orbitDiameterVw: number, planetDiameterVw: number) => {
+    const angleRad = (2 * Math.PI) * (index / totalPlanets) - Math.PI; // Calculate angle in radians
+    const orbitRadiusVw = orbitDiameterVw / 2; // Radius of the orbit in vw
+    const planetRadiusVw = planetDiameterVw / 2; // Radius of the planet in vw
+
+    // Adjust the position to start from the top of the halo and move clockwise
+    const top = 9.5 - (orbitRadiusVw * Math.cos(angleRad)) - planetRadiusVw;
+    const left = 30.5 + (orbitRadiusVw * Math.sin(angleRad)) - planetRadiusVw;
+
     return {
-      top: '50%',
-      left: '50%',
-      transform: `translate(-50%, calc(${orbitSize / 2}vw - ${planetSize / 2}vw))`, // Adjust the planet along the orbit
+      top: `${top}vw`,
+      left: `${left}vw`,
+      transform: 'translate(-50%, -50%)', // Center the planet
     };
   };
 
@@ -73,31 +85,35 @@ export default function Home() {
         {orbitSizes.map((size, index) => {
           const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
           const rotationAnimation = getRotationAnimation(index);
-          const planetPosition = getPlanetPosition(size);
 
           return (
             <React.Fragment key={index}>
               <div
-                className={`absolute rounded-full border`}
+                className={`orbit absolute rounded-full border`}
                 style={{
                   animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
-                  borderWidth: '2px',
-                  borderColor: 'rgba(255, 255, 255, 0.5)',
-                  borderStyle: 'dotted',
+                  // borderWidth: '2px',
+                  // borderColor: 'rgba(255, 255, 255, 0.5)',
+                  // borderStyle: 'dotted',
                   width: `${size}vw`,
                   height: `${size}vw`,
                 }}
               ></div>
               {/* Planet */}
-              <div
-                className={`absolute rounded-full bg-green-600 shadow-lg`}
-                style={{
-                  width: `${coreSizeBase / 4}vw`, // This is the size of the planet
-                  height: `${coreSizeBase / 4}vw`, // This is the size of the planet
-                  ...planetPosition,
-                  zIndex: 20, // Ensure the planet is above the orbit
-                }}
-              ></div>
+              {
+                Array.from({ length: 3 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="planet absolute rounded-full bg-green-600 shadow-lg cursor-pointer"
+                    style={{
+                      width: `${coreSizeBase / 4}vw`, // Size of the planet
+                      height: `${coreSizeBase / 4}vw`, // Size of the planet
+                      ...getPlanetPosition(index, 3, innerHaloSize, coreSizeBase / 4),
+                    }}
+                    // onClick handler to set the message based on the planet clicked
+                  ></div>
+                ))
+              }
             </React.Fragment>
           );
         })}

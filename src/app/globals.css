@@ -26,18 +26,17 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-/* styles/globals.css */
 @keyframes pulse {
   0%, 20% {
-    transform: scale(1);
+    transform: scale(0.7);
     opacity: 1;
   }
   10% {
-    transform: scale(1.005);
+    transform: scale(1.2);
     opacity: 0.5;
   }
   80%, 100% {
-    transform: scale(1);
+    transform: scale(0.7);
     opacity: 1;
   }
 }
@@ -58,4 +57,16 @@ body {
   to {
     transform: rotate(-360deg);
   }
+}
+
+.planet {
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
+  background-color: transparent; /* No fill */
+  /* Other styles */
+}
+
+.orbit {
+  border: 1px dashed rgba(255, 255, 255, 0.2); /* Light dashed border */
+  border-radius: 50%; /* Ensures the orbit is circular */
+  /* Adjust the size as needed based on your existing setup */
 }
