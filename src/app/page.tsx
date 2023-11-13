@@ -1,6 +1,7 @@
 "use client"
 
-import React, {useState} from "react";
+import {animated, useSpring } from "@react-spring/web";
+import React, {useEffect, useState} from "react";
 
 interface Message {
   title: string,
@@ -60,95 +61,143 @@ export default function Home() {
     return index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite';
   };
 
-  const innerHaloSize = orbitSizes[0]; // Use the first orbit size for the inner halo
+  const [scrollY, setScrollY] = useState(0);
 
-  const getPlanetPosition = (index: number, totalPlanets: number, orbitDiameterVw: number, planetDiameterVw: number) => {
-    const angleRad = (2 * Math.PI) * (index / totalPlanets) - Math.PI; // Calculate angle in radians
-    const orbitRadiusVw = orbitDiameterVw / 2; // Radius of the orbit in vw
-    const planetRadiusVw = planetDiameterVw / 2; // Radius of the planet in vw
+  const [galaxyOneProps, setGalaxyOneProps] = useSpring(() => ({
+    scale: 1,
+    opacity: 1,
+  }));
 
-    // Adjust the position to start from the top of the halo and move clockwise
-    const top = 9.5 - (orbitRadiusVw * Math.cos(angleRad)) - planetRadiusVw;
-    const left = 30.5 + (orbitRadiusVw * Math.sin(angleRad)) - planetRadiusVw;
+  const [galaxyTwoProps, setGalaxyTwoProps] = useSpring(() => ({
+    scale: 0.5, // start smaller as if it's further away
+    opacity: 0,
+  }));
 
-    return {
-      top: `${top}vw`,
-      left: `${left}vw`,
-      transform: 'translate(-50%, -50%)', // Center the planet
-    };
+  const handleScroll = () => {
+    const posY = window.scrollY;
+    setScrollY(posY);
+
+    // Here you'll need to calculate the scale based on posY for both galaxies
+    // This is a simplistic approach and would need to be refined
+    const newScaleOne = 1 - posY / 1000; // Example calculation
+    const newScaleTwo = Math.max(0, 2.2 - posY / 1000); // Ensure scale does not go below 0
+
+    setGalaxyOneProps({ scale: newScaleOne, opacity: newScaleOne });
+    setGalaxyTwoProps({ scale: newScaleTwo, opacity: Math.min(1, posY / 500) });
   };
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <main className="flex h-screen items-center justify-center p-6 bg-black">
-      <div className="w-3/5 relative flex items-center justify-center">
-        {/* Orbits */}
-        {orbitSizes.map((size, index) => {
-          const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
-          const rotationAnimation = getRotationAnimation(index);
-
-          return (
-            <React.Fragment key={index}>
-              <div
-                className={`orbit absolute rounded-full border`}
-                style={{
-                  animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
-                  // borderWidth: '2px',
-                  // borderColor: 'rgba(255, 255, 255, 0.5)',
-                  // borderStyle: 'dotted',
-                  width: `${size}vw`,
-                  height: `${size}vw`,
-                }}
-              ></div>
-              {/* Planet */}
-              {
-                Array.from({ length: 3 }).map((_, index) => (
+    <main>
+      <animated.div
+        style={{
+          transform: galaxyOneProps.scale.to(s => `scale(${s})`),
+          opacity: galaxyOneProps.opacity,
+        }}
+      >
+        <section className="h-screen flex justify-center items-center">
+          <div className="w-3/5 relative flex items-center justify-center">
+            {/* Orbits */}
+            {orbitSizes.map((size, index) => {
+              const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
+              const rotationAnimation = getRotationAnimation(index);
+              return (
+                <React.Fragment key={index}>
                   <div
-                    key={index}
-                    className="planet absolute rounded-full bg-green-600 shadow-lg cursor-pointer"
+                    className={`orbit absolute rounded-full border`}
                     style={{
-                      width: `${coreSizeBase / 4}vw`, // Size of the planet
-                      height: `${coreSizeBase / 4}vw`, // Size of the planet
-                      ...getPlanetPosition(index, 3, innerHaloSize, coreSizeBase / 4),
+                      animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
+                      width: `${size}vw`,
+                      height: `${size}vw`,
                     }}
-                    // onClick handler to set the message based on the planet clicked
                   ></div>
-                ))
-              }
-            </React.Fragment>
-          );
-        })}
+                </React.Fragment>
+              );
+            })}
+            {/* Sun or Galaxy Core */}
+            <div
+              className="z-10 rounded-full flex items-center justify-center"
+              style={{
+                // animation: `${pulseAnimation}`,
+                width: `${coreSizeBase}vw`,
+                height: `${coreSizeBase}vw`,
+              }}
+            >
+              <h1 className="text-white font-thin"
+                  style={{fontSize: `${coreSizeBase / 8}vw`}}>infinia.space</h1>
+            </div>
+          </div>
+          <div className="w-2/5 p-4">
+            <h2 className="font-thin text-xl mb-2">{message.title}</h2>
+            <p className="mb-2">{message.body}</p>
+            <div className="tech-stack">
+              {TECHNOLOGIES.map((tech, index) => {
+                const fontSize = getTechnologiesFontSize(index);
+                const isDifferentSize = index > 0 && fontSize !== getTechnologiesFontSize(index - 1);
+                return (
+                  <React.Fragment key={tech.name}>
+                    {isDifferentSize ? <br/> : null}
+                    {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
+                    <span className={`${fontSize} inline-block mb-2`}>
+                    {tech.name}
+                  </span>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </animated.div>
+      <animated.div
+        style={{
+          transform: galaxyTwoProps.scale.to(s => `scale(${s})`),
+          opacity: galaxyTwoProps.opacity,
+        }}
+      >
+        <section className="h-screen flex justify-center items-center">
+          <div className="w-2/5 p-4">
+            <h2 className="font-thin text-xl mb-2">Cake Group</h2>
+            <p className="mb-2">Lorem ipsum dolor sit amet...</p>
+          </div>
+          <div className="w-3/5 relative flex items-center justify-center">
+            {/* Orbits */}
+            {orbitSizes.map((size, index) => {
+              const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
+              const rotationAnimation = getRotationAnimation(index);
 
-        {/* Sun or Galaxy Core */}
-        <div
-          className="z-10 rounded-full flex items-center justify-center"
-          style={{
-            // animation: `${pulseAnimation}`,
-            width: `${coreSizeBase}vw`,
-            height: `${coreSizeBase}vw`,
-          }}
-        >
-          <h1 className="text-white font-thin" style={{fontSize: `${coreSizeBase / 8}vw`}}>infinia.space</h1>
-        </div>
-      </div>
-      <div className="w-2/5 p-4">
-        <h2 className="font-thin text-xl mb-2">{message.title}</h2>
-        <p className="mb-2">{message.body}</p>
-        <div className="tech-stack">
-          {TECHNOLOGIES.map((tech, index) => {
-            const fontSize = getTechnologiesFontSize(index);
-            const isDifferentSize = index > 0 && fontSize !== getTechnologiesFontSize(index - 1);
-            return (
-              <React.Fragment key={tech.name}>
-                {isDifferentSize ? <br /> : null}
-                {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
-                <span className={`${fontSize} inline-block mb-2`}>
-                  {tech.name}
-                </span>
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
+              return (
+                <React.Fragment key={index}>
+                  <div
+                    className={`orbit absolute rounded-full border`}
+                    style={{
+                      animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
+                      width: `${size}vw`,
+                      height: `${size}vw`,
+                    }}
+                  ></div>
+                </React.Fragment>
+              );
+            })}
+            {/* Sun or Galaxy Core */}
+            <div
+              className="z-10 rounded-full flex items-center justify-center"
+              style={{
+                // animation: `${pulseAnimation}`,
+                width: `${coreSizeBase}vw`,
+                height: `${coreSizeBase}vw`,
+              }}
+            >
+              <h1 className="text-white font-thin"
+                  style={{fontSize: `${coreSizeBase / 8}vw`}}>Work Experience</h1>
+            </div>
+          </div>
+        </section>
+      </animated.div>
     </main>
   );
 }
