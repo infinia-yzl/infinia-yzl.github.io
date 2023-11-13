@@ -1,1 +1,0 @@
-export { PublicFooter } from './PublicFooter';
