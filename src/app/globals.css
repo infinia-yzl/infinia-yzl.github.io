@@ -24,6 +24,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  /* Temporarily hide overflow, remove when adding parallax */
+  overflow: hidden;
 }
 
 @keyframes pulse {
@@ -62,11 +65,9 @@ body {
 .planet {
   border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
   background-color: transparent; /* No fill */
-  /* Other styles */
 }
 
 .orbit {
   border: 1px dashed rgba(255, 255, 255, 0.2); /* Light dashed border */
   border-radius: 50%; /* Ensures the orbit is circular */
-  /* Adjust the size as needed based on your existing setup */
 }

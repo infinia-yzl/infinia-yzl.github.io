@@ -1,6 +1,6 @@
 {
   "name": "infinia-universe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,7 +12,8 @@
     "@react-spring/web": "^9.7.3",
     "next": "14.0.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "@types/node": "^20",
