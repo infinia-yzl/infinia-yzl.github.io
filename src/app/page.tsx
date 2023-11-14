@@ -31,6 +31,10 @@ const TECHNOLOGIES = [
   { name: 'Javascript' },
   { name: 'REST' },
   { name: 'GraphQL' },
+  { name: 'Jest' },
+  { name: 'Mocha' },
+  { name: 'Cypress' },
+  { name: 'Playwright' },
   { name: 'SQL' },
   { name: 'TypeORM' },
   { name: 'Sequelize' },
@@ -104,7 +108,7 @@ export default function Home() {
   return (
     <main>
       <section className="h-screen flex flex-col md:flex-row justify-center items-center">
-        <div className="w-full md:w-3/5 relative flex items-center justify-center">
+        <div className="w-full md:w-1/2 relative flex items-center justify-center">
           {/* Orbits */}
           {orbitSizes.map((size, index) => {
             const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
@@ -140,10 +144,10 @@ export default function Home() {
             </h1>
           </div>
         </div>
-        <div className="w-full md:w-2/5 p-4 mt-24 md:mt-0">
+        <div className="w-full md:w-1/2 p-4 mt-24 md:mt-0">
           <h2 className="text-xl mb-2">{message.title}</h2>
           <p className="mb-2">{message.body}</p>
-          <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2">
+          <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2 max-w-screen-md">
             {TECHNOLOGIES.map((tech, index) => {
               const fontSize = getTechnologiesFontSize(index);
               const isDifferentSize = index > 0 && fontSize !== getTechnologiesFontSize(index - 1);
@@ -158,7 +162,7 @@ export default function Home() {
               );
             })}
           </div>
-          <p className="mb-2">
+          <p className="mt-2 mb-2">
             Most notable, recent work:
             <button
               type="button"
@@ -177,7 +181,7 @@ export default function Home() {
           </p>
 
           {/* CTA */}
-          <div className="flex space-x-4 pt-2">
+          <div className="flex space-x-4">
             <button type="button" aria-label="github">
               <a href="https://github.com/infinia-yzl" target="_blank" rel="noreferrer" aria-label="github">
                 <SiGithub className="text-4xl" />
