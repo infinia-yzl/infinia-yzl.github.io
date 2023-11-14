@@ -5,10 +5,10 @@
     "es2021": true
   },
   "extends": [
-    "plugin:react/recommended",
     "airbnb",
     "airbnb-typescript",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "next/core-web-vitals"
   ],
   "settings": {
     "import/resolver": {
@@ -32,14 +32,8 @@
     "@typescript-eslint",
     "anti-trojan-source"
   ],
-  "ignorePatterns": ["**/*.d.ts", "*.html"],
+  "ignorePatterns": ["**/*.d.ts", "*.html", "next.config.js", "postcss.config.js"],
   "rules": {
-    "no-restricted-imports": [
-      "error",
-      {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
-      }
-    ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "no-param-reassign": [

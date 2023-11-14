@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import React, {useState} from "react";
-import {SiGithub, SiLinkedin} from "react-icons/si";
-import {MdEmail} from "react-icons/md";
-import {HiOutlineExternalLink} from "react-icons/hi";
+import React, { useState } from 'react';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
+import { MdEmail } from 'react-icons/md';
+import { HiOutlineExternalLink } from 'react-icons/hi';
 
 interface Message {
   title: string,
@@ -16,10 +16,10 @@ interface Message {
 
 const MSG_INTRO: Message = {
   title: "Hi, I'm Isaac.",
-  body: "I specialize in software engineering and web development with recent working experience in the blockchain industry.",
+  body: 'I specialize in software engineering and web development with recent working experience in the blockchain industry.',
   highlight: {
-    title: "Levain",
-    url: "https://developer.levain.tech/"
+    title: 'Levain',
+    url: 'https://developer.levain.tech/',
   },
 };
 
@@ -83,7 +83,7 @@ const getTechnologiesFontSize = (index: number) => {
 // ];
 
 export default function Home() {
-  const [message, setMessage] = useState(MSG_INTRO);
+  const [message] = useState(MSG_INTRO);
 
   // Define the base size for the sun or galaxy core
   const coreSizeBase = 15;
@@ -96,9 +96,7 @@ export default function Home() {
   const pulseAnimation = `pulse ${pulseAnimationDuration}s infinite cubic-bezier(0.4, 0, 0.6, 1)`;
 
   // Function to determine the correct rotation animation based on index
-  const getRotationAnimation = (index: number) => {
-    return index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite';
-  };
+  const getRotationAnimation = (index: number) => (index % 2 === 0 ? 'spin-cw 120s linear infinite' : 'spin-ccw 120s linear infinite');
 
   return (
     <main>
@@ -109,10 +107,12 @@ export default function Home() {
             const animationDelay = `${(pulseAnimationDuration / orbitSizes.length) * index * 0.1}s`;
             const rotationAnimation = getRotationAnimation(index);
             return (
+              // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
                 <div
+                  /* eslint-disable-next-line react/no-array-index-key */
                   key={index}
-                  className={`orbit absolute rounded-full border`}
+                  className="orbit absolute rounded-full border"
                   style={{
                     animation: `${pulseAnimation} ${animationDelay}, ${rotationAnimation}`,
                     width: `${size}vw`, // Adjust max value as needed
@@ -120,7 +120,7 @@ export default function Home() {
                     maxWidth: `${(index + 1) * 13.5}vw`,
                     maxHeight: `${(index + 1) * 13.5}vw`,
                   }}
-                ></div>
+                />
               </React.Fragment>
             );
           })}
@@ -132,7 +132,7 @@ export default function Home() {
               height: `${coreSizeBase}vw`,
             }}
           >
-            <h1 className="text-white font-thin" style={{fontSize: `${coreSizeBase / 12}vw`}}>
+            <h1 className="text-white font-thin" style={{ fontSize: `${coreSizeBase / 12}vw` }}>
               infinia.space
             </h1>
           </div>
@@ -146,7 +146,7 @@ export default function Home() {
               const isDifferentSize = index > 0 && fontSize !== getTechnologiesFontSize(index - 1);
               return (
                 <React.Fragment key={tech.name}>
-                  {isDifferentSize ? <br/> : null}
+                  {isDifferentSize ? <br /> : null}
                   {!isDifferentSize && index !== 0 ? <span className="mx-2">·</span> : null}
                   <span className={`${fontSize} inline-block mb-2 text-gray-200`}>
                     {tech.name}
@@ -158,31 +158,36 @@ export default function Home() {
           <p className="mb-2">
             Most notable, recent work:
             <button
+              type="button"
               className="inline-flex items-center rounded-full border-2 border-white bg-black ml-2 py-2 px-4 hover:bg-white hover:text-black transition duration-400 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-white focus:ring-opacity-50"
             >
-              <a href={message.highlight.url} target="_blank" rel="noreferrer"
-                 className="flex items-center">
+              <a
+                href={message.highlight.url}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center"
+              >
                 <span>{message.highlight.title}</span>
-                <HiOutlineExternalLink className="ml-2"/>
+                <HiOutlineExternalLink className="ml-2" />
               </a>
             </button>
           </p>
 
           {/* CTA */}
           <div className="flex space-x-4 pt-2">
-            <button>
-              <a href="https://github.com/infinia-yzl" target="_blank" rel="noreferrer">
-                <SiGithub className="text-4xl"/>
+            <button type="button" aria-label="github">
+              <a href="https://github.com/infinia-yzl" target="_blank" rel="noreferrer" aria-label="github">
+                <SiGithub className="text-4xl" />
               </a>
             </button>
-            <button>
-              <a href="https://www.linkedin.com/in/infinia/" target="_blank" rel="noreferrer">
-                <SiLinkedin className="text-4xl"/>
+            <button type="button" aria-label="linkedin">
+              <a href="https://www.linkedin.com/in/infinia/" target="_blank" rel="noreferrer" aria-label="linkedin">
+                <SiLinkedin className="text-4xl" />
               </a>
             </button>
-            <button>
-              <a href="mailto:explore@infinia.space">
-                <MdEmail className="text-4xl"/>
+            <button type="button" aria-label="email">
+              <a href="mailto:explore@infinia.space" aria-label="email">
+                <MdEmail className="text-4xl" />
               </a>
             </button>
           </div>

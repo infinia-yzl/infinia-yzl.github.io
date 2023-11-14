@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { useEffect } from 'react';
 
@@ -23,8 +23,9 @@ export default function CustomCursor() {
   }, []);
 
   return (
-    <style jsx global>{`
-      .cursor {
+    <style jsx global>
+      {`
+       .cursor {
         width: 60px;
         height: 60px;
         border-radius: 50%;
@@ -38,6 +39,7 @@ export default function CustomCursor() {
       body {
         cursor: none;
       }
-    `}</style>
+    `}
+    </style>
   );
 }
