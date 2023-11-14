@@ -32,6 +32,9 @@ const TECHNOLOGIES = [
   { name: 'REST' },
   { name: 'GraphQL' },
   { name: 'SQL' },
+  { name: 'TypeORM' },
+  { name: 'Sequelize' },
+  { name: 'KnexJS' },
   { name: 'Redis' },
   { name: 'NodeJS' },
   { name: 'BunJS' },
@@ -138,9 +141,9 @@ export default function Home() {
           </div>
         </div>
         <div className="w-full md:w-2/5 p-4 mt-24 md:mt-0">
-          <h2 className="font-thin text-xl mb-2">{message.title}</h2>
+          <h2 className="text-xl mb-2">{message.title}</h2>
           <p className="mb-2">{message.body}</p>
-          <div className="tech-stack border-l-2 border-gray-700 pl-2 mb-2">
+          <div className="font-thin border-l-2 border-gray-700 pl-2 mb-2">
             {TECHNOLOGIES.map((tech, index) => {
               const fontSize = getTechnologiesFontSize(index);
               const isDifferentSize = index > 0 && fontSize !== getTechnologiesFontSize(index - 1);
